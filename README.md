@@ -1,6 +1,10 @@
 # hcl-mode [![travis badge][travis-badge]][travis-link] [![melpa badge][melpa-badge]][melpa-link] [![melpa stable badge][melpa-stable-badge]][melpa-stable-link]
 
-Major mode of [Hashicorp Configuration Language](https://github.com/hashicorp/hcl)
+Major mode for [Hashicorp Configuration Language](https://github.com/hashicorp/hcl).
+
+This mode was originally written by
+[@syohex](https://github.com/syohex), but became unmaintained, so this
+fork (@purcell) is now its official home for MELPA puposes.
 
 
 ## Screenshot
