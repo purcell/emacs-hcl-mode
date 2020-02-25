@@ -1,4 +1,4 @@
-# hcl-mode [![travis badge][travis-badge]][travis-link] [![melpa badge][melpa-badge]][melpa-link] [![melpa stable badge][melpa-stable-badge]][melpa-stable-link]
+# hcl-mode [![Build status][ci-badge]][ci-link] [![MELPA][melpa-badge]][melpa-link] [![MELPA STABLE][melpa-stable-badge]][melpa-stable-link]
 
 Major mode for [Hashicorp Configuration Language](https://github.com/hashicorp/hcl).
 
@@ -46,8 +46,8 @@ Indentation size
 - [terraform-mode](https://github.com/syohex/emacs-terraform-mode): A major mode of terraform configuration file
 
 
-[travis-badge]: https://travis-ci.org/syohex/emacs-hcl-mode.svg
-[travis-link]: https://travis-ci.org/syohex/emacs-hcl-mode
+[ci-badge]: https://github.com/purcell/emacs-hcl-mode/workflows/CI/badge.svg
+[ci-link]: https://github.com/purcell/emacs-hcl-mode/actions
 [melpa-link]: https://melpa.org/#/hcl-mode
 [melpa-stable-link]: https://stable.melpa.org/#/hcl-mode
 [melpa-badge]: https://melpa.org/packages/hcl-mode-badge.svg

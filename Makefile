@@ -1,36 +1,36 @@
-.PHONY : test
-
 EMACS ?= emacs
-CASK ?= cask
 
-LOADPATH = -L .
-LOAD_HELPER = -l test/test-helper.el
+# A space-separated list of required package names
+NEEDED_PACKAGES = package-lint ert
 
-ELPA_DIR = $(shell EMACS=$(EMACS) $(CASK) package-directory)
+INIT_PACKAGES="(progn \
+  (require 'package) \
+  (push '(\"melpa\" . \"https://melpa.org/packages/\") package-archives) \
+  (package-initialize) \
+  (dolist (pkg '(${NEEDED_PACKAGES})) \
+    (unless (package-installed-p pkg) \
+      (unless (assoc pkg package-archive-contents) \
+	(package-refresh-contents)) \
+      (package-install pkg))) \
+  )"
 
-test: elpa
-	$(CASK) exec $(EMACS) -Q -batch $(LOADPATH) $(LOAD_HELPER) \
+all: compile test package-lint clean-elc
+
+package-lint:
+	${EMACS} -Q --eval ${INIT_PACKAGES} -batch -f package-lint-batch-and-exit hcl-mode.el
+
+compile: clean-elc
+	${EMACS} -Q --eval ${INIT_PACKAGES} -L . -batch -f batch-byte-compile *.el
+
+test:
+	$(EMACS) -Q --eval ${INIT_PACKAGES} -L . -batch \
+		-l test/test-helper.el \
 		-l test/test-indentation.el \
 		-l test/test-command.el \
 		-l test/test-highlighting.el \
 		-f ert-run-tests-batch-and-exit
 
-test-indentation: elpa
-	$(CASK) exec $(EMACS) -Q -batch $(LOADPATH) $(LOAD_HELPER) \
-		-l test/test-indentation.el \
-		-f ert-run-tests-batch-and-exit
+clean-elc:
+	rm -f f.elc
 
-test-command: elpa
-	$(CASK) exec $(EMACS) -Q -batch $(LOADPATH) $(LOAD_HELPER) \
-		-l test/test-command.el \
-		-f ert-run-tests-batch-and-exit
-
-test-highlighting: elpa
-	$(CASK) exec $(EMACS) -Q -batch $(LOADPATH) $(LOAD_HELPER) \
-		-l test/test-highlighting.el \
-		-f ert-run-tests-batch-and-exit
-
-elpa: $(ELPA_DIR)
-$(ELPA_DIR): Cask
-	$(CASK) install
-	touch $@
+.PHONY:	all compile clean-elc package-lint
