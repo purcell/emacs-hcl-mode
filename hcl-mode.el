@@ -1,9 +1,11 @@
 ;;; hcl-mode.el --- Major mode for Hashicorp -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 by Syohei YOSHIDA
+;; Copyright (C) 2020 by Steve Purcell
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
-;; URL: https://github.com/syohex/emacs-hcl-mode
+;; Maintainer: Steve Purcell <steve@sanityinc.com>
+;; URL: https://github.com/purcell/emacs-hcl-mode
 ;; Version: 0.03
 ;; Package-Requires: ((emacs "24.3"))
 
