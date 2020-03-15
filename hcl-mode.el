@@ -129,6 +129,7 @@
 
 (defun hcl-end-of-defun (&optional count)
   (interactive "p")
+  (setq count (or count 1))
   (let ((paren-level (hcl--paren-level)))
     (when (or (and (looking-at-p "}") (= paren-level 1))
               (= paren-level 0))
